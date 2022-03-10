@@ -1,7 +1,8 @@
-FROM plotly/heroku-docker-r:3.6.2_heroku18
+FROM plotly/heroku-docker-r:3.6.3_heroku18
 
 # on build, copy application files
 COPY . /app/
+COPY data/ ./data/
 
 # for installing additional dependencies etc.
 RUN if [ -f '/app/onbuild' ]; then bash /app/onbuild; fi;

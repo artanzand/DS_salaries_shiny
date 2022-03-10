@@ -42,22 +42,22 @@ app$layout(
 
 
 app$callback(
-  output("side_plot", "figure"), 
+  output("side_plot", "figure"),
   list(input("DS_identity", "value")),
   function(DS_identity) {
     # Clean data
-    data <- data |> 
-      drop_na() |> 
+    data <- data |>
+      drop_na() |>
       dplyr::filter(Salary_USD < 400000) |>
       dplyr::filter(Tenure != "I don't write code to analyze data")
     
     # Change list to vector
-    DS_identity <- unlist(!!sym(DS_identity))
+    # DS_identity <- unlist(!!sym(DS_identity))
     
     # Filter data
-    if (is.null(DS_identity)){
-      DS_identity = c('Yes', 'No', 'Sort of (Explain more)')
-    }
+    # if (is.null(DS_identity)){
+    #   DS_identity = c('Yes', 'No', 'Sort of (Explain more)')
+    # }
     
     data <- data |>
       dplyr::filter(DataScienceIdentitySelect %in% DS_identity)
@@ -88,13 +88,18 @@ app$callback(
       ) +
       theme(legend.position="none")
     
-    subplot(ggplotly(points, tooltip = "EmployerIndustry"), 
-                    bars, 
-                    nrows = 2, 
-                    heights = c(0.85, 0.15))
+    
+    
+    ggplotly(points, tooltip = "EmployerIndustry")
+    
+    
+    # subplot(ggplotly(points, tooltip = "EmployerIndustry"),
+    #         bars,
+    #         nrows = 2,
+    #         heights = c(0.85, 0.15))
   }
 )
 
 
-# app$run_server(host = '0.0.0.0')
-app$run_server(debug = TRUE)
+app$run_server(host = '0.0.0.0')
+# app$run_server(debug = TRUE)
