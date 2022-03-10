@@ -51,14 +51,6 @@ app$callback(
       dplyr::filter(Salary_USD < 400000) %>%
       dplyr::filter(Tenure != "I don't write code to analyze data")
     
-    # Change list to vector
-    # DS_identity <- unlist(!!sym(DS_identity))
-    
-    # Filter data
-    # if (is.null(DS_identity)){
-    #   DS_identity = c('Yes', 'No', 'Sort of (Explain more)')
-    # }
-    
     data <- data %>%
       dplyr::filter(DataScienceIdentitySelect %in% DS_identity)
     
@@ -72,21 +64,22 @@ app$callback(
       color = Tenure
     )) + geom_point() +
       labs(
-        title = "Interactive window for coding experience count",
+        title = "Salary distribution per country",
         x = "Salary in USD",
         y = "Country"
       ) +
-      theme(legend.position="none")
+      scale_x_continuous(labels = scales::label_number_si()) +
+      theme_dark()
     
-    bars <- data %>% ggplot(aes(
-      y = Tenure,
-      fill = Tenure
-    )) + geom_bar() +
-      labs(
-        x = "Counts",
-        y = "Coding Experience"
-      ) +
-      theme(legend.position="none")
+    # bars <- data %>% ggplot(aes(
+    #   y = Tenure,
+    #   fill = Tenure
+    # )) + geom_bar() +
+    #   labs(
+    #     x = "Counts",
+    #     y = "Coding Experience"
+    #   ) +
+    #   theme(legend.position="none")
     
     
     
