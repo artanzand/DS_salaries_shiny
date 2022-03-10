@@ -66,10 +66,11 @@ app$callback(
       labs(
         title = "Salary distribution per country",
         x = "Salary in USD",
-        y = "Country"
+        y = "Country",
+        color = "Coding Experience"
       ) +
-      scale_x_continuous(labels = scales::label_number_si()) +
-      theme_dark()
+      scale_x_continuous(labels = scales::label_number_si())
+      # theme_dark()
     
     # bars <- data %>% ggplot(aes(
     #   y = Tenure,
