@@ -46,9 +46,9 @@ app$callback(
   list(input("DS_identity", "value")),
   function(DS_identity) {
     # Clean data
-    data <- data |>
-      drop_na() |>
-      dplyr::filter(Salary_USD < 400000) |>
+    data <- data %>%
+      drop_na() %>%
+      dplyr::filter(Salary_USD < 400000) %>%
       dplyr::filter(Tenure != "I don't write code to analyze data")
     
     # Change list to vector
@@ -59,14 +59,14 @@ app$callback(
     #   DS_identity = c('Yes', 'No', 'Sort of (Explain more)')
     # }
     
-    data <- data |>
+    data <- data %>%
       dplyr::filter(DataScienceIdentitySelect %in% DS_identity)
     
     # Plot order
     order_tenure <- c('More than 10 years', '6 to 10 years', '3 to 5 years', '1 to 2 years', 'Less than a year')
     
     # Create Plot
-    points <- data |> ggplot(aes(
+    points <- data %>% ggplot(aes(
       x = Salary_USD,
       y = Country,
       color = Tenure
@@ -78,7 +78,7 @@ app$callback(
       ) +
       theme(legend.position="none")
     
-    bars <- data |> ggplot(aes(
+    bars <- data %>% ggplot(aes(
       y = Tenure,
       fill = Tenure
     )) + geom_bar() +
