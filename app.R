@@ -10,7 +10,7 @@ library(tidyverse)
 
 app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 
-data <- read_csv(here::here("data", "processed", "cleaned_salaries.csv"))
+data <- read_csv("/app/data/processed/cleaned_salaries.csv")
 
 
 app$layout(
